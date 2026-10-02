@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>وين خلية النحل يا الحبيب؟</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Alexandria', sans-serif;
+      user-select: none;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #2b1f07, #0f0c05, #000);
+      min-height: 100vh;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2.5rem 1.25rem;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      margin: auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .badge {
+      background: rgba(255, 183, 3, 0.15);
+      border: 1px solid #ffb703;
+      color: #ffb703;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.3;
+      background: linear-gradient(135deg, #fff 40%, #ffb703);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .counter {
+      color: #a0a0a0;
+      font-size: 0.95rem;
+    }
+
+    .counter span {
+      color: #ffb703;
+      font-weight: 700;
+    }
+
+    .excuse-box {
+      width: 100%;
+      min-height: 110px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px dashed rgba(255, 183, 3, 0.4);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem 1.5rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffe6a7;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .shake {
+      animation: shakeEffect 0.35s ease-in-out;
+    }
+
+    @keyframes shakeEffect {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-8px) rotate(-1deg); }
+      40% { transform: translateX(8px) rotate(1deg); }
+      60% { transform: translateX(-5px); }
+      80% { transform: translateX(5px); }
+    }
+
+    .btn-action {
+      background: linear-gradient(135deg, #fb8500, #ffb703);
+      color: #1a1000;
+      font-weight: 900;
+      font-size: 1.25rem;
+      border: none;
+      border-radius: 16px;
+      padding: 1.1rem 2.2rem;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(251, 133, 0, 0.35);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-action:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 30px rgba(251, 133, 0, 0.5);
+    }
+
+    .btn-action:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    .footer-warning {
+      max-width: 580px;
+      width: 100%;
+      margin-top: 3rem;
+      background: rgba(255, 45, 85, 0.08);
+      border: 1px solid rgba(255, 45, 85, 0.3);
+      border-radius: 20px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .advice-text {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #ffb703;
+    }
+
+    .threat-text {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ff4d6d;
+      background: rgba(255, 77, 109, 0.12);
+      padding: 0.7rem 1rem;
+      border-radius: 12px;
+      letter-spacing: 0.2px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="badge">نظام فضح المصرفين v1.0</div>
+    
+    <h1>مولّد تصريفات خلية النحل</h1>
+
+    <div class="counter">عدد محاولات الهروب: <span id="count">0</span></div>
+
+    <div class="excuse-box" id="excuseBox">
+      اضغط الزر وشوف العذر التسليكي القادم...
+    </div>
+
+    <button class="btn-action" id="triggerBtn" onclick="nextExcuse()">
+      <span>اضغط وطلع عذر</span>
+      <span>🍯</span>
+    </button>
+  </div>
+
+  <div class="footer-warning">
+    <div class="advice-text">اعطي مروان خلية نحل احسن لك 🍯</div>
+    <div class="threat-text">اذا ما عطيت مروان خلية نحل يوم الأحد بيصير شي ما يعجبك ⚠️</div>
+  </div>
+
+  <script>
+    const excuses = [
+      "النحل اليوم عنده إضراب عن العمل ومسوين نقابة.",
+      "الجبن الكيري انقرض من كل بقالات الحي فجأة.",
+      "الفرن زعلان ورافض يولّع إلا برضاوة.",
+      "كنت جايبها والله، بس هجم علي قطو بالحارة وخطفها وهرب.",
+      "الدكتور حذرني من مروان، يقول السكر عنده بيزيد من الحلاوة.",
+      "الشيرة طلعت مالحة بالغلط ورميناها رحمة بكم.",
+      "العجينة جالسة تخمر، قالوا بتاخذ 7 أيام عمل.",
+      "كنت بالفرع وطفى شاحن جوالي ولا عرفت أحاسب شبكة.",
+      "طاح عليها نيزك وهو نازل من الغلاف الجوي وتفحمت.",
+      "البقالة عطوني كيس فاضي وأنا ما انتبهت إلا بالبيت.",
+      "والله طلعت الصينية تجنن بس اخوي الصغير غطس فيها بالغلط."
+    ];
+
+    let lastIndex = -1;
+    let attempts = 0;
+
+    function nextExcuse() {
+      attempts++;
+      document.getElementById('count').textContent = attempts;
+
+      let randomIndex;
+      do {
+        randomIndex = Math.floor(Math.random() * excuses.length);
+      } while (randomIndex === lastIndex && excuses.length > 1);
+
+      lastIndex = randomIndex;
+      const box = document.getElementById('excuseBox');
+
+      box.classList.remove('shake');
+      void box.offsetWidth;
+      box.classList.add('shake');
+
+      box.textContent = excuses[randomIndex];
+    }
+  </script>
+</body>
+</html>
